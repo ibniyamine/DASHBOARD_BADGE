@@ -152,7 +152,7 @@ def load_data():
 
 def create_kpi_cards(df_filtered, df_total):
     """Créer les cartes KPI"""
-    col1, col2, col3, col4 = st.columns(4)
+    col1, col2, col3 = st.columns(3)
     
     with col1:
         total_filtered = len(df_filtered)
@@ -181,14 +181,7 @@ def create_kpi_cards(df_filtered, df_total):
         </div>
         """, unsafe_allow_html=True)
     
-    with col4:
-        unique_structures = df_filtered['structure'].nunique()
-        st.markdown(f"""
-        <div class="metric-card fade-in" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
-            <div class="metric-value">{unique_structures}</div>
-            <div class="metric-label">NB Structures</div>
-        </div>
-        """, unsafe_allow_html=True)
+
 
 def create_charts(df_filtered):
     """Créer les visualisations"""
@@ -362,7 +355,7 @@ def main():
     try:
         available_structures = sorted([s for s in df['structure'].unique() if pd.notna(s) and s != ''])
         selected_structures = st.sidebar.multiselect(
-            "Filtrer par Structure:",
+            "Filtrer par Fonction:",
             options=available_structures,
             default=[],  # Vide par défaut
             help="Sélectionnez une ou plusieurs structures à afficher"
